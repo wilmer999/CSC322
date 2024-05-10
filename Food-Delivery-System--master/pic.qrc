@@ -1,0 +1,16 @@
+<RCC>
+    <qresource prefix="/new/prefix2"/>
+    <qresource prefix="/">
+        <file>main1.jpg</file>
+        <file>mainPic.webp</file>
+        <file>welcome.jpg</file>
+        <file>DeliveryMain.jpg</file>
+        <file>deliver1.png</file>
+        <file>tofu.jpeg</file>
+        <file>vegieSoup.jpg</file>
+        <file>chaofan.jpg</file>
+        <file>chaofen.jpeg</file>
+        <file>jiaozi.jpg</file>
+        <file>drinks.jpeg</file>
+    </qresource>
+</RCC>
