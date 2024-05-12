@@ -1,9 +1,13 @@
-#include "widget.h"
+#include "Login.h"
 #include <QApplication>
 #include "vector"
 #include "stdio.h"
 #include "CustomerMain.h"
 #include "datastruct.h"
+#include <QtSql>
+#include <QSqlError>
+#include <QtDebug>
+
 using namespace std;
 double allmoney;
 food food11;
@@ -33,6 +37,5 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     Widget w;
     w.show();
-
    return a.exec();
 }

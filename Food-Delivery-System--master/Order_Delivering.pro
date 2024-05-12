@@ -6,6 +6,7 @@
 #-------------------------------------------------
 
 QT       += core gui
+QT       += sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -15,11 +16,12 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
     CustomerMain.cpp \
+    Login.cpp \
+    UserCustomer.cpp \
     customerCart.cpp \
     customerOrderCheck.cpp \
     datastructure.cpp \
     surferView.cpp \
-    widget.cpp \
     order.cpp \
     paybill.cpp \
     delivermainpage.cpp \
@@ -28,6 +30,8 @@ SOURCES += main.cpp\
 
 HEADERS  += \
     CustomerMain.h \
+    Login.h \
+    UserCustomer.h \
     customerCart.h \
     customerOrderCheck.h \
     datastruct.h \
@@ -36,15 +40,15 @@ HEADERS  += \
     delivermainpage.h \
     surferView.h \
     taskreply.h \
-    delivercheck.h \
-    Widget.h
+    delivercheck.h
 
 FORMS    += \
     CustomerMain.ui \
+    Login.ui \
+    SignUpTem.ui \
     customerCart.ui \
     customerOrderCheck.ui \
     surferView.ui \
-    widget.ui \
     order.ui \
     paybill.ui \
     delivermainpage.ui \
@@ -53,3 +57,4 @@ FORMS    += \
 
 RESOURCES += \
     pic.qrc
+

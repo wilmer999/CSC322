@@ -1,9 +1,9 @@
 #include "paybill.h"
 #include "ui_paybill.h"
 #include "datastruct.h"
-#include "widget.h"
+#include "Login.h"
 #include "vector"
-#include "ui_widget.h"
+#include "ui_Login.h"
 #include <string>
 #include <sstream>
 using namespace std;
