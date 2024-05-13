@@ -21,6 +21,7 @@ SOURCES += main.cpp\
     customerCart.cpp \
     customerOrderCheck.cpp \
     datastructure.cpp \
+    signup.cpp \
     surferView.cpp \
     order.cpp \
     paybill.cpp \
@@ -38,6 +39,7 @@ HEADERS  += \
     order.h \
     paybill.h \
     delivermainpage.h \
+    signup.h \
     surferView.h \
     taskreply.h \
     delivercheck.h
@@ -45,9 +47,9 @@ HEADERS  += \
 FORMS    += \
     CustomerMain.ui \
     Login.ui \
-    SignUpTem.ui \
     customerCart.ui \
     customerOrderCheck.ui \
+    signup.ui \
     surferView.ui \
     order.ui \
     paybill.ui \

@@ -1,10 +1,12 @@
 release/main.o
 release/CustomerMain.o
+release/Login.o
+release/SignUp.o
+release/UserCustomer.o
 release/customerCart.o
 release/customerOrderCheck.o
 release/datastructure.o
 release/surferView.o
-release/widget.o
 release/order.o
 release/paybill.o
 release/delivermainpage.o
@@ -12,6 +14,7 @@ release/taskreply.o
 release/delivercheck.o
 release/qrc_pic.o
 release/moc_CustomerMain.o
+release/moc_Login.o
 release/moc_customerCart.o
 release/moc_customerOrderCheck.o
 release/moc_order.o
@@ -20,4 +23,3 @@ release/moc_delivermainpage.o
 release/moc_surferView.o
 release/moc_taskreply.o
 release/moc_delivercheck.o
-release/moc_Widget.o

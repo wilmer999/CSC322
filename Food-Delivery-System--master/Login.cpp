@@ -1,5 +1,6 @@
 #include "Login.h"
-#include "ui_Login.h"
+#include "signup.h"
+#include "ui_widget.h"
 #include "vector"
 #include "stdio.h"
 #include "datastruct.h"
@@ -60,16 +61,12 @@ void Widget::on_pushButton_clicked()
     QString Username;
     QString Password;
     consumer a;
-    int k = 0;
-    int com = 0;
-    int com1 = 0;
-    int ss = 0;
 
     Username = ui->name->text();
     Password = ui->password->text();
 
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName(QString("C:\\Users\\ramse\\Desktop\\SQLiteDB\\demodb.db"));
+    db.setDatabaseName(QString("C:\\Users\\ramse\\Desktop\\CSC322\\Food-Delivery-System--master\\demodb.db"));
 
 /*
     QSqlQuery QueryInsertData(db);
@@ -101,8 +98,12 @@ void Widget::on_pushButton_clicked()
             QMessageBox::warning(this, "Login", "Username and passwords are not correct");
         }
     }
+
+
+
     QSqlDatabase::database().commit();
     db.close();
+
 }
 
 
@@ -157,3 +158,11 @@ void Widget::on_pushButton_2_clicked()
 
 
 }
+
+void Widget::on_pushButton_3_clicked()
+{
+    SignUp info_wind;
+    info_wind.setModal(true);
+    info_wind.exec();
+}
+

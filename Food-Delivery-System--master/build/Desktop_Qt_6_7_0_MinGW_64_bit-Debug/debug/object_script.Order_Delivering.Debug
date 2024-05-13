@@ -5,6 +5,7 @@ debug/UserCustomer.o
 debug/customerCart.o
 debug/customerOrderCheck.o
 debug/datastructure.o
+debug/signup.o
 debug/surferView.o
 debug/order.o
 debug/paybill.o
@@ -19,6 +20,7 @@ debug/moc_customerOrderCheck.o
 debug/moc_order.o
 debug/moc_paybill.o
 debug/moc_delivermainpage.o
+debug/moc_signup.o
 debug/moc_surferView.o
 debug/moc_taskreply.o
 debug/moc_delivercheck.o

@@ -1,10 +1,12 @@
 debug/main.o
 debug/CustomerMain.o
+debug/Login.o
+debug/SignUp.o
+debug/UserCustomer.o
 debug/customerCart.o
 debug/customerOrderCheck.o
 debug/datastructure.o
 debug/surferView.o
-debug/widget.o
 debug/order.o
 debug/paybill.o
 debug/delivermainpage.o
@@ -12,6 +14,7 @@ debug/taskreply.o
 debug/delivercheck.o
 debug/qrc_pic.o
 debug/moc_CustomerMain.o
+debug/moc_Login.o
 debug/moc_customerCart.o
 debug/moc_customerOrderCheck.o
 debug/moc_order.o
@@ -20,4 +23,3 @@ debug/moc_delivermainpage.o
 debug/moc_surferView.o
 debug/moc_taskreply.o
 debug/moc_delivercheck.o
-debug/moc_Widget.o
