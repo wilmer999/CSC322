@@ -17,14 +17,13 @@ TEMPLATE = app
 SOURCES += main.cpp\
     CustomerMain.cpp \
     Login.cpp \
-    UserCustomer.cpp \
-    customerCart.cpp \
+    custcart.cpp \
     customerOrderCheck.cpp \
     datastructure.cpp \
+    dialog.cpp \
     signup.cpp \
     surferView.cpp \
     order.cpp \
-    paybill.cpp \
     delivermainpage.cpp \
     taskreply.cpp \
     delivercheck.cpp
@@ -32,12 +31,14 @@ SOURCES += main.cpp\
 HEADERS  += \
     CustomerMain.h \
     Login.h \
+    OrderdataStore.h \
     UserCustomer.h \
-    customerCart.h \
+    custcart.h \
     customerOrderCheck.h \
+    database.h \
     datastruct.h \
+    dialog.h \
     order.h \
-    paybill.h \
     delivermainpage.h \
     signup.h \
     surferView.h \
@@ -47,12 +48,12 @@ HEADERS  += \
 FORMS    += \
     CustomerMain.ui \
     Login.ui \
-    customerCart.ui \
+    custcart.ui \
     customerOrderCheck.ui \
+    dialog.ui \
     signup.ui \
     surferView.ui \
     order.ui \
-    paybill.ui \
     delivermainpage.ui \
     taskreply.ui \
     delivercheck.ui

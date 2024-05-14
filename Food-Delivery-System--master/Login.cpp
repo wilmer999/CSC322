@@ -1,4 +1,5 @@
 #include "Login.h"
+#include "UserCustomer.h"
 #include "signup.h"
 #include "ui_widget.h"
 #include "vector"
@@ -60,7 +61,7 @@ void Widget::on_pushButton_clicked()
 {
     QString Username;
     QString Password;
-    consumer a;
+    CustomerDataStore& dataStore = CustomerDataStore::getInstance();
 
     Username = ui->name->text();
     Password = ui->password->text();
@@ -68,17 +69,6 @@ void Widget::on_pushButton_clicked()
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
     db.setDatabaseName(QString("C:\\Users\\ramse\\Desktop\\CSC322\\Food-Delivery-System--master\\demodb.db"));
 
-/*
-    QSqlQuery QueryInsertData(db);
-    QueryInsertData.prepare("INSERT INTO Employee (Username, Position, Password, Address, Phone, Email) VALUES(:Username, :Position, :Password, :Address, :Phone, :Email)");
-    QueryInsertData.bindValue(":Username", na);
-    QueryInsertData.bindValue(":Position", "Admin");
-    QueryInsertData.bindValue(":Password", nb);
-    QueryInsertData.bindValue(":Address", "123 street, apt 8K");
-    QueryInsertData.bindValue(":Phone", 4444444444);
-    QueryInsertData.bindValue(":Email", "Something@hotmail.com");
-    QueryInsertData.exec();
-*/
     db.open();
     QSqlDatabase::database().transaction();
 
@@ -92,6 +82,9 @@ void Widget::on_pushButton_clicked()
         }
         if (count == 1) {
             QMessageBox::information(this, "Login", "Username and passwords are correct");
+            dataStore.setUsername(Username);
+            dataStore.setPassword(Password);
+
             consum.show();
         }
         else{
@@ -99,6 +92,10 @@ void Widget::on_pushButton_clicked()
         }
     }
 
+    dataStore.setCustomerID(dataStore.getCustomerIDFromDB(Username,Password));
+    qDebug() << "CustomerID:" << dataStore.getCustomerID();
+    qDebug() << "Username:" << dataStore.getUsername();
+    qDebug() << "Password:" << dataStore.getPassword();
 
 
     QSqlDatabase::database().commit();

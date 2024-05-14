@@ -1,7 +1,12 @@
 #include "order.h"
+#include "UserCustomer.h"
+#include "qsqlerror.h"
 #include "ui_order.h"
 #include "datastruct.h"
-
+#include "CustomerMain.h"
+#include "dialog.h"
+#include <QSqlQuery>
+#include <QDebug>
 #include <string>
 #include <sstream>
 using namespace std;
@@ -36,9 +41,6 @@ order::~order()
 {
     delete ui;
 }
-
-
-
 
 void order::initial()
 {
@@ -92,104 +94,440 @@ void order::initial()
     dd=QString::number(food16.money);
     ui->food16->append(dd);
 
-
-
-
 }
 
 void order::on_pushButton_4_clicked()  // back
 {
     this->close();
+
 }
 
 
 void order::on_pushButton_3_clicked() //add to cart
 {
-    QString i;
-    double k;
-    int sm=0;
-    orders order1;
+    CustomerDataStore& dataStore = CustomerDataStore::getInstance();
+    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+    db.setDatabaseName(QString("C:\\Users\\ramse\\Desktop\\CSC322\\Food-Delivery-System--master\\demodb.db"));
+    QSqlQuery qry;
+    Dialog pay;
 
-    i= ui->food11c->text();
-    k=i.toDouble();
-    if(k>0){
-        order1.orderfood[sm]=food11.name; //confirm food and order quantity
-        order1.ordernumber[sm]=k;
-        order1.many++;
-        sm++;
-    }
-    allmoney=k*food11.money;
+    int Menucount = 0;
 
-    i=ui->food12c->text();
-    k=i.toDouble();
-    if(k>0){
-        order1.orderfood[sm]=food12.name;
-        order1.ordernumber[sm]=k;
-        order1.many++;
-        sm++;
-    }
-    allmoney=allmoney+k*food12.money;
-    i=ui->food13c->text();
-    k=i.toDouble();
-    if(k>0){
-        order1.orderfood[sm]=food13.name;
-        order1.ordernumber[sm]=k;
-        order1.many++;
-        sm++;
+    int customerID = dataStore.getCustomerID();
+    QString username = dataStore.getUsername();
+    db.open();
+
+    if(qry.exec("SELECT * FROM Menu")){
+        while(qry.next()){
+            Menucount = Menucount + 1;
+        }
+        qDebug() << "Number of menu Items: " << Menucount;
     }
 
+    int Qant1 = ui->food11c->value();
+    int Qant2 = ui->food12c->value();
+    int Qant3 = ui->food13c->value();
+    int Qant4 = ui->food14c->value();
+    int Qant5 = ui->food15_c->value();
+    int Qant6 = ui->food16c->value();
 
-    allmoney=allmoney+k*food13.money;
-    i=ui->food14c->text();
-    k=i.toDouble();
-    if(k>0){
-        order1.orderfood[sm]=food14.name;
-        order1.ordernumber[sm]=k;
-        order1.many++;
-        sm++;
+    for(int i = 0; i < Qant1; i++) {
+        qry.prepare("INSERT INTO Orders (CustomerID, Username, MenuNum, MenuName, Price, Confirm) "
+                    "VALUES (:customerID, :username, :menuNum, :menuName, :price, :confirm)");
+        qry.bindValue(":customerID", customerID);
+        qry.bindValue(":username", username);
+        qry.bindValue(":menuNum", 1);
+        qry.bindValue(":menuName", "Fried Rice");
+        qry.bindValue(":price", 15.0);
+        qry.bindValue(":confirm", "No");
+        qry.exec();
+
+        if (qry.exec()) {
+            qDebug() << "Order inserted successfully.";
+        } else {
+            qDebug() << "Failed to insert order:" << qry.lastError().text();
+        }
     }
 
-    allmoney=allmoney+k*food14.money;
+    for(int i = 0; i < Qant2; i++) {
+        qry.prepare("INSERT INTO Orders (CustomerID, Username, MenuNum, MenuName, Price, Confirm) "
+                    "VALUES (:customerID, :username, :menuNum, :menuName, :price, :confirm)");
+        qry.bindValue(":customerID", customerID);
+        qry.bindValue(":username", username);
+        qry.bindValue(":menuNum", 2);
+        qry.bindValue(":menuName", "Dumplings \n pork");
+        qry.bindValue(":price", 10.0);
+        qry.bindValue(":confirm", "No");
+        qry.exec();
 
-    i=ui->food15_c->text();
-    k=i.toDouble();
-    if(k>0){
-        order1.orderfood[sm]=food15.name;
-        order1.ordernumber[sm]=k;
-        order1.many++;
-        sm++;
+        if (qry.exec()) {
+            qDebug() << "Order inserted successfully.";
+        } else {
+            qDebug() << "Failed to insert order:" << qry.lastError().text();
+        }
     }
 
-    allmoney=allmoney+k*food15.money;
+    for(int i = 0; i < Qant3; i++) {
+        qry.prepare("INSERT INTO Orders (CustomerID, Username, MenuNum, MenuName, Price, Confirm) "
+                    "VALUES (:customerID, :username, :menuNum, :menuName, :price, :confirm)");
+        qry.bindValue(":customerID", customerID);
+        qry.bindValue(":username", username);
+        qry.bindValue(":menuNum", 3);
+        qry.bindValue(":menuName", "Fried Noodle \n noodle");
+        qry.bindValue(":price", 18.0);
+        qry.bindValue(":confirm", "No");
+        qry.exec();
 
-    i=ui->food16c->text();
-    k=i.toDouble();
-    if(k>0){
-        order1.orderfood[sm]=food16.name;
-        order1.ordernumber[sm]=k;
-        order1.many++;
-        sm++;
+        if (qry.exec()) {
+            qDebug() << "Order inserted successfully.";
+        } else {
+            qDebug() << "Failed to insert order:" << qry.lastError().text();
+        }
     }
-    allmoney=allmoney+k*food16.money;
 
-    i=QString::number(allmoney);
-   // QMessageBox::information(this,tr("hello"),i);
+    for(int i = 0; i < Qant4; i++) {
+        qry.prepare("INSERT INTO Orders (CustomerID, Username, MenuNum, MenuName, Price, Confirm) "
+                    "VALUES (:customerID, :username, :menuNum, :menuName, :price, :confirm)");
+        qry.bindValue(":customerID", customerID);
+        qry.bindValue(":username", username);
+        qry.bindValue(":menuNum", 4);
+        qry.bindValue(":menuName", "Mapo Doufu \n tofu");
+        qry.bindValue(":price", 20.0);
+        qry.bindValue(":confirm", "No");
+        qry.exec();
 
-    order1.consumer=consumerlist[preconsumerid].name;
-    preorderid=orderid;
-    order1.ID=preorderid;
-    order1.phone= QString::number(consumerlist[preconsumerid].phonenumber);
-    order1.status=0;
-    order1.totalprice=allmoney;
-    orderid++;
-    orderlist.push_back(order1);
+        if (qry.exec()) {
+            qDebug() << "Order inserted successfully.";
+        } else {
+            qDebug() << "Failed to insert order:" << qry.lastError().text();
+        }
+    }
+
+    for(int i = 0; i < Qant5; i++) {
+        qry.prepare("INSERT INTO Orders (CustomerID, Username, MenuNum, MenuName, Price, Confirm) "
+                    "VALUES (:customerID, :username, :menuNum, :menuName, :price, :confirm)");
+        qry.bindValue(":customerID", customerID);
+        qry.bindValue(":username", username);
+        qry.bindValue(":menuNum", 5);
+        qry.bindValue(":menuName", "Soft Drinks");
+        qry.bindValue(":price", 2.0);
+        qry.bindValue(":confirm", "No");
+        qry.exec();
+
+        if (qry.exec()) {
+            qDebug() << "Order inserted successfully.";
+        } else {
+            qDebug() << "Failed to insert order:" << qry.lastError().text();
+        }
+    }
+
+    for(int i = 0; i < Qant6; i++) {
+        qry.prepare("INSERT INTO Orders (CustomerID, Username, MenuNum, MenuName, Price, Confirm) "
+                    "VALUES (:customerID, :username, :menuNum, :menuName, :price, :confirm)");
+        qry.bindValue(":customerID", customerID);
+        qry.bindValue(":username", username);
+        qry.bindValue(":menuNum", 6);
+        qry.bindValue(":menuName", "Veggie Soup \n seasonal vegetables");
+        qry.bindValue(":price", 10.0);
+        qry.bindValue(":confirm", "No");
+        qry.exec();
+
+        if (qry.exec()) {
+            qDebug() << "Order inserted successfully.";
+        } else {
+            qDebug() << "Failed to insert order:" << qry.lastError().text();
+        }
+    }
 
     this->close();
-
-
-    m.showtotal();
-    m.show();
-
+    pay.setModal(true);
+    pay.exec();
 
 
 }
+
+void order::on_pushButton_5_clicked()
+{
+    CustomerDataStore& dataStore = CustomerDataStore::getInstance();
+    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+    db.setDatabaseName(QString("C:\\Users\\ramse\\Desktop\\CSC322\\Food-Delivery-System--master\\demodb.db"));
+    QSqlQuery qry;
+    Dialog pay;
+
+    int Menucount = 0;
+
+    int customerID = dataStore.getCustomerID();
+    QString username = dataStore.getUsername();
+    db.open();
+
+    if(qry.exec("SELECT * FROM Menu")){
+        while(qry.next()){
+            Menucount = Menucount + 1;
+        }
+        qDebug() << "Number of menu Items: " << Menucount;
+    }
+
+    int Qant1 = ui->food11c->value();
+    int Qant2 = ui->food12c->value();
+    int Qant3 = ui->food13c->value();
+    int Qant4 = ui->food14c->value();
+    int Qant5 = ui->food15_c->value();
+    int Qant6 = ui->food16c->value();
+
+    for(int i = 0; i < Qant1; i++) {
+        qry.prepare("INSERT INTO Orders (CustomerID, Username, MenuNum, MenuName, Price, Confirm) "
+                    "VALUES (:customerID, :username, :menuNum, :menuName, :price, :confirm)");
+        qry.bindValue(":customerID", customerID);
+        qry.bindValue(":username", username);
+        qry.bindValue(":menuNum", 1);
+        qry.bindValue(":menuName", "Fried Rice");
+        qry.bindValue(":price", 15.0);
+        qry.bindValue(":confirm", "No");
+        qry.exec();
+
+        if (qry.exec()) {
+            qDebug() << "Order inserted successfully.";
+        } else {
+            qDebug() << "Failed to insert order:" << qry.lastError().text();
+        }
+    }
+
+    for(int i = 0; i < Qant2; i++) {
+        qry.prepare("INSERT INTO Orders (CustomerID, Username, MenuNum, MenuName, Price, Confirm) "
+                    "VALUES (:customerID, :username, :menuNum, :menuName, :price, :confirm)");
+        qry.bindValue(":customerID", customerID);
+        qry.bindValue(":username", username);
+        qry.bindValue(":menuNum", 2);
+        qry.bindValue(":menuName", "Dumplings \n pork");
+        qry.bindValue(":price", 10.0);
+        qry.bindValue(":confirm", "No");
+        qry.exec();
+
+        if (qry.exec()) {
+            qDebug() << "Order inserted successfully.";
+        } else {
+            qDebug() << "Failed to insert order:" << qry.lastError().text();
+        }
+    }
+
+    for(int i = 0; i < Qant3; i++) {
+        qry.prepare("INSERT INTO Orders (CustomerID, Username, MenuNum, MenuName, Price, Confirm) "
+                    "VALUES (:customerID, :username, :menuNum, :menuName, :price, :confirm)");
+        qry.bindValue(":customerID", customerID);
+        qry.bindValue(":username", username);
+        qry.bindValue(":menuNum", 3);
+        qry.bindValue(":menuName", "Fried Noodle \n noodle");
+        qry.bindValue(":price", 18.0);
+        qry.bindValue(":confirm", "No");
+        qry.exec();
+
+        if (qry.exec()) {
+            qDebug() << "Order inserted successfully.";
+        } else {
+            qDebug() << "Failed to insert order:" << qry.lastError().text();
+        }
+    }
+
+    for(int i = 0; i < Qant4; i++) {
+        qry.prepare("INSERT INTO Orders (CustomerID, Username, MenuNum, MenuName, Price, Confirm) "
+                    "VALUES (:customerID, :username, :menuNum, :menuName, :price, :confirm)");
+        qry.bindValue(":customerID", customerID);
+        qry.bindValue(":username", username);
+        qry.bindValue(":menuNum", 4);
+        qry.bindValue(":menuName", "Mapo Doufu \n tofu");
+        qry.bindValue(":price", 20.0);
+        qry.bindValue(":confirm", "No");
+        qry.exec();
+
+        if (qry.exec()) {
+            qDebug() << "Order inserted successfully.";
+        } else {
+            qDebug() << "Failed to insert order:" << qry.lastError().text();
+        }
+    }
+
+    for(int i = 0; i < Qant5; i++) {
+        qry.prepare("INSERT INTO Orders (CustomerID, Username, MenuNum, MenuName, Price, Confirm) "
+                    "VALUES (:customerID, :username, :menuNum, :menuName, :price, :confirm)");
+        qry.bindValue(":customerID", customerID);
+        qry.bindValue(":username", username);
+        qry.bindValue(":menuNum", 5);
+        qry.bindValue(":menuName", "Soft Drinks");
+        qry.bindValue(":price", 2.0);
+        qry.bindValue(":confirm", "No");
+        qry.exec();
+
+        if (qry.exec()) {
+            qDebug() << "Order inserted successfully.";
+        } else {
+            qDebug() << "Failed to insert order:" << qry.lastError().text();
+        }
+    }
+
+    for(int i = 0; i < Qant6; i++) {
+        qry.prepare("INSERT INTO Orders (CustomerID, Username, MenuNum, MenuName, Price, Confirm) "
+                    "VALUES (:customerID, :username, :menuNum, :menuName, :price, :confirm)");
+        qry.bindValue(":customerID", customerID);
+        qry.bindValue(":username", username);
+        qry.bindValue(":menuNum", 6);
+        qry.bindValue(":menuName", "Veggie Soup \n seasonal vegetables");
+        qry.bindValue(":price", 10.0);
+        qry.bindValue(":confirm", "No");
+        qry.exec();
+
+        if (qry.exec()) {
+            qDebug() << "Order inserted successfully.";
+        } else {
+            qDebug() << "Failed to insert order:" << qry.lastError().text();
+        }
+    }
+
+    this->close();
+    pay.setModal(true);
+    pay.exec();
+
+}
+
+
+void order::on_pushButton_6_clicked()
+{
+    CustomerDataStore& dataStore = CustomerDataStore::getInstance();
+    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+    db.setDatabaseName(QString("C:\\Users\\ramse\\Desktop\\CSC322\\Food-Delivery-System--master\\demodb.db"));
+    QSqlQuery qry;
+    Dialog pay;
+
+    int Menucount = 0;
+
+    int customerID = dataStore.getCustomerID();
+    QString username = dataStore.getUsername();
+    db.open();
+
+    if(qry.exec("SELECT * FROM Menu")){
+        while(qry.next()){
+            Menucount = Menucount + 1;
+        }
+        qDebug() << "Number of menu Items: " << Menucount;
+    }
+
+    int Qant1 = ui->food11c->value();
+    int Qant2 = ui->food12c->value();
+    int Qant3 = ui->food13c->value();
+    int Qant4 = ui->food14c->value();
+    int Qant5 = ui->food15_c->value();
+    int Qant6 = ui->food16c->value();
+
+    for(int i = 0; i < Qant1; i++) {
+        qry.prepare("INSERT INTO Orders (CustomerID, Username, MenuNum, MenuName, Price, Confirm) "
+                    "VALUES (:customerID, :username, :menuNum, :menuName, :price, :confirm)");
+        qry.bindValue(":customerID", customerID);
+        qry.bindValue(":username", username);
+        qry.bindValue(":menuNum", 1);
+        qry.bindValue(":menuName", "Fried Rice");
+        qry.bindValue(":price", 15.0);
+        qry.bindValue(":confirm", "No");
+        qry.exec();
+
+        if (qry.exec()) {
+            qDebug() << "Order inserted successfully.";
+        } else {
+            qDebug() << "Failed to insert order:" << qry.lastError().text();
+        }
+    }
+
+    for(int i = 0; i < Qant2; i++) {
+        qry.prepare("INSERT INTO Orders (CustomerID, Username, MenuNum, MenuName, Price, Confirm) "
+                    "VALUES (:customerID, :username, :menuNum, :menuName, :price, :confirm)");
+        qry.bindValue(":customerID", customerID);
+        qry.bindValue(":username", username);
+        qry.bindValue(":menuNum", 2);
+        qry.bindValue(":menuName", "Dumplings \n pork");
+        qry.bindValue(":price", 10.0);
+        qry.bindValue(":confirm", "No");
+        qry.exec();
+
+        if (qry.exec()) {
+            qDebug() << "Order inserted successfully.";
+        } else {
+            qDebug() << "Failed to insert order:" << qry.lastError().text();
+        }
+    }
+
+    for(int i = 0; i < Qant3; i++) {
+        qry.prepare("INSERT INTO Orders (CustomerID, Username, MenuNum, MenuName, Price, Confirm) "
+                    "VALUES (:customerID, :username, :menuNum, :menuName, :price, :confirm)");
+        qry.bindValue(":customerID", customerID);
+        qry.bindValue(":username", username);
+        qry.bindValue(":menuNum", 3);
+        qry.bindValue(":menuName", "Fried Noodle \n noodle");
+        qry.bindValue(":price", 18.0);
+        qry.bindValue(":confirm", "No");
+        qry.exec();
+
+        if (qry.exec()) {
+            qDebug() << "Order inserted successfully.";
+        } else {
+            qDebug() << "Failed to insert order:" << qry.lastError().text();
+        }
+    }
+
+    for(int i = 0; i < Qant4; i++) {
+        qry.prepare("INSERT INTO Orders (CustomerID, Username, MenuNum, MenuName, Price, Confirm) "
+                    "VALUES (:customerID, :username, :menuNum, :menuName, :price, :confirm)");
+        qry.bindValue(":customerID", customerID);
+        qry.bindValue(":username", username);
+        qry.bindValue(":menuNum", 4);
+        qry.bindValue(":menuName", "Mapo Doufu \n tofu");
+        qry.bindValue(":price", 20.0);
+        qry.bindValue(":confirm", "No");
+        qry.exec();
+
+        if (qry.exec()) {
+            qDebug() << "Order inserted successfully.";
+        } else {
+            qDebug() << "Failed to insert order:" << qry.lastError().text();
+        }
+    }
+
+    for(int i = 0; i < Qant5; i++) {
+        qry.prepare("INSERT INTO Orders (CustomerID, Username, MenuNum, MenuName, Price, Confirm) "
+                    "VALUES (:customerID, :username, :menuNum, :menuName, :price, :confirm)");
+        qry.bindValue(":customerID", customerID);
+        qry.bindValue(":username", username);
+        qry.bindValue(":menuNum", 5);
+        qry.bindValue(":menuName", "Soft Drinks");
+        qry.bindValue(":price", 2.0);
+        qry.bindValue(":confirm", "No");
+        qry.exec();
+
+        if (qry.exec()) {
+            qDebug() << "Order inserted successfully.";
+        } else {
+            qDebug() << "Failed to insert order:" << qry.lastError().text();
+        }
+    }
+
+    for(int i = 0; i < Qant6; i++) {
+        qry.prepare("INSERT INTO Orders (CustomerID, Username, MenuNum, MenuName, Price, Confirm) "
+                    "VALUES (:customerID, :username, :menuNum, :menuName, :price, :confirm)");
+        qry.bindValue(":customerID", customerID);
+        qry.bindValue(":username", username);
+        qry.bindValue(":menuNum", 6);
+        qry.bindValue(":menuName", "Veggie Soup \n seasonal vegetables");
+        qry.bindValue(":price", 10.0);
+        qry.bindValue(":confirm", "No");
+        qry.exec();
+
+        if (qry.exec()) {
+            qDebug() << "Order inserted successfully.";
+        } else {
+            qDebug() << "Failed to insert order:" << qry.lastError().text();
+        }
+    }
+
+    this->close();
+    pay.setModal(true);
+    pay.exec();
+
+}
+

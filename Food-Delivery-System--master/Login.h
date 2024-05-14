@@ -2,6 +2,7 @@
 #define LOGIN_H
 
 #include <QWidget>
+#include "qapplication.h"
 #include "vector"
 #include "stdio.h"
 #include <QMessageBox>
@@ -10,6 +11,11 @@
 #include "surferView.h"
 #include <QtSql>
 #include <QSqlDatabase>
+
+#include <QCloseEvent>
+#include <QMainWindow>
+#include <QApplication>
+#include <QDebug>
 
 
 namespace Ui {
@@ -24,6 +30,14 @@ public:
     explicit Widget(QWidget *parent = 0);
     ~Widget();
 
+protected:
+    void closeEvent(QCloseEvent *event) override {
+        // Close all other windows
+        closeAllWindowsExceptThis();
+        // Accept the close event to allow this window to close
+        event->accept();
+    }
+
 private slots:
     void on_pushButton_clicked();
 
@@ -37,6 +51,21 @@ private:
     consumermainpage consum;
     delivermainpage  deliver1;
     surferView surfer;
+
+    void closeAllWindowsExceptThis() {
+        // Get all top-level windows
+        QList<QWidget*> topLevelWidgets = QApplication::topLevelWidgets();
+        for (QWidget* widget : topLevelWidgets) {
+            // Close the window if it's not the current window
+            if (widget != this) {
+                widget->close();
+            }
+        }
+
+
+
+
+    }
 
 
 };

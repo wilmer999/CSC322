@@ -1,4 +1,6 @@
 #include "CustomerMain.h"
+#include "UserCustomer.h"
+#include "custcart.h"
 #include "ui_CustomerMain.h"
 #include "Login.h"
 #include"order.h"
@@ -22,8 +24,9 @@ consumermainpage::~consumermainpage()
 
 void consumermainpage::on_pushButton_clicked()
 {
-    check.showorder();
-    check.show();
+    CustCart check;
+    check.setModal(true);
+    check.exec();
 
 
 }
@@ -31,9 +34,16 @@ void consumermainpage::on_pushButton_clicked()
 void consumermainpage::on_pushButton_2_clicked()
 {
 
+    CustomerDataStore& dataStore = CustomerDataStore::getInstance();
+
+    qDebug() << "CustomerID:" << dataStore.getCustomerID();
+    qDebug() << "Username:" << dataStore.getUsername();
+    qDebug() << "Password:" << dataStore.getPassword();
+
     ordera=new order;
     ordera->initial();
     ordera->show();
+
 
 }
 

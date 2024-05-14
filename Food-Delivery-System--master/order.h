@@ -1,6 +1,5 @@
 #ifndef ORDER_H
 #define ORDER_H
-#include "paybill.h"
 #include <QWidget>
 
 namespace Ui {
@@ -23,9 +22,12 @@ private slots:
     void on_pushButton_3_clicked();
     void on_pushButton_4_clicked();
 
+    void on_pushButton_5_clicked();
+
+    void on_pushButton_6_clicked();
+
 private:
     Ui::order *ui;
-    paybill m;
 
 };
 

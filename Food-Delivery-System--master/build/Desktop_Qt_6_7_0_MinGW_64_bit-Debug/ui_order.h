@@ -43,10 +43,12 @@ public:
     QTextBrowser *food16;
     QSpinBox *food16c;
     QLabel *label_2;
+    QPushButton *pushButton_5;
     QWidget *tab_3;
     QTextBrowser *food15;
     QLabel *label_7;
     QSpinBox *food15_c;
+    QPushButton *pushButton_6;
     QLabel *label;
 
     void setupUi(QWidget *order)
@@ -96,6 +98,7 @@ public:
         font2.setPointSize(10);
         font2.setBold(true);
         food11c->setFont(font2);
+        food11c->setMaximum(10);
         food12 = new QTextBrowser(tab);
         food12->setObjectName("food12");
         food12->setGeometry(QRect(190, 160, 171, 111));
@@ -107,6 +110,7 @@ public:
         food12c->setObjectName("food12c");
         food12c->setGeometry(QRect(190, 270, 51, 31));
         food12c->setFont(font3);
+        food12c->setMaximum(10);
         food13 = new QTextBrowser(tab);
         food13->setObjectName("food13");
         food13->setGeometry(QRect(580, 20, 171, 101));
@@ -116,6 +120,7 @@ public:
         food13c->setObjectName("food13c");
         food13c->setGeometry(QRect(580, 120, 51, 31));
         food13c->setFont(font3);
+        food13c->setMaximum(10);
         food14 = new QTextBrowser(tab);
         food14->setObjectName("food14");
         food14->setGeometry(QRect(580, 160, 171, 111));
@@ -125,6 +130,7 @@ public:
         food14c->setObjectName("food14c");
         food14c->setGeometry(QRect(580, 270, 51, 31));
         food14c->setFont(font3);
+        food14c->setMaximum(10);
         pushButton_4 = new QPushButton(tab);
         pushButton_4->setObjectName("pushButton_4");
         pushButton_4->setGeometry(QRect(20, 430, 101, 41));
@@ -174,11 +180,17 @@ public:
         food16c->setObjectName("food16c");
         food16c->setGeometry(QRect(190, 130, 51, 31));
         food16c->setFont(font2);
+        food16c->setMaximum(10);
         label_2 = new QLabel(tab_2);
         label_2->setObjectName("label_2");
         label_2->setGeometry(QRect(20, 20, 161, 111));
         label_2->setPixmap(QPixmap(QString::fromUtf8(":/vegieSoup.jpg")));
         label_2->setScaledContents(true);
+        pushButton_5 = new QPushButton(tab_2);
+        pushButton_5->setObjectName("pushButton_5");
+        pushButton_5->setGeometry(QRect(680, 420, 191, 41));
+        pushButton_5->setFont(font4);
+        pushButton_5->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);"));
         food1->addTab(tab_2, QString());
         tab_3 = new QWidget();
         tab_3->setObjectName("tab_3");
@@ -198,6 +210,12 @@ public:
         food15_c->setObjectName("food15_c");
         food15_c->setGeometry(QRect(200, 100, 51, 31));
         food15_c->setFont(font2);
+        food15_c->setMaximum(10);
+        pushButton_6 = new QPushButton(tab_3);
+        pushButton_6->setObjectName("pushButton_6");
+        pushButton_6->setGeometry(QRect(680, 420, 191, 41));
+        pushButton_6->setFont(font4);
+        pushButton_6->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);"));
         food1->addTab(tab_3, QString());
         label = new QLabel(order);
         label->setObjectName("label");
@@ -232,6 +250,7 @@ public:
         pushButton_3->setText(QCoreApplication::translate("order", "Add To Cart", nullptr));
         food1->setTabText(food1->indexOf(tab), QCoreApplication::translate("order", "Main", nullptr));
         label_2->setText(QString());
+        pushButton_5->setText(QCoreApplication::translate("order", "Add To Cart", nullptr));
         food1->setTabText(food1->indexOf(tab_2), QCoreApplication::translate("order", "Appetizers", nullptr));
         food15->setHtml(QCoreApplication::translate("order", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
@@ -242,6 +261,7 @@ public:
 "</style></head><body style=\" font-family:'Arial Rounded MT Bold'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", nullptr));
         label_7->setText(QString());
+        pushButton_6->setText(QCoreApplication::translate("order", "Add To Cart", nullptr));
         food1->setTabText(food1->indexOf(tab_3), QCoreApplication::translate("order", "Drinks", nullptr));
         label->setText(QCoreApplication::translate("order", "Menu", nullptr));
     } // retranslateUi

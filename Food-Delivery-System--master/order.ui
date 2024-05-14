@@ -99,6 +99,9 @@ background-color: rgb(175, 88, 0);</string>
        <bold>true</bold>
       </font>
      </property>
+     <property name="maximum">
+      <number>10</number>
+     </property>
     </widget>
     <widget class="QTextBrowser" name="food12">
      <property name="geometry">
@@ -131,6 +134,9 @@ background-color: rgb(175, 88, 0);</string>
       <font>
        <pointsize>10</pointsize>
       </font>
+     </property>
+     <property name="maximum">
+      <number>10</number>
      </property>
     </widget>
     <widget class="QTextBrowser" name="food13">
@@ -165,6 +171,9 @@ background-color: rgb(175, 88, 0);</string>
        <pointsize>10</pointsize>
       </font>
      </property>
+     <property name="maximum">
+      <number>10</number>
+     </property>
     </widget>
     <widget class="QTextBrowser" name="food14">
      <property name="geometry">
@@ -197,6 +206,9 @@ background-color: rgb(175, 88, 0);</string>
       <font>
        <pointsize>10</pointsize>
       </font>
+     </property>
+     <property name="maximum">
+      <number>10</number>
      </property>
     </widget>
     <widget class="QPushButton" name="pushButton_4">
@@ -365,6 +377,9 @@ background-color: rgb(255, 255, 255);</string>
        <bold>true</bold>
       </font>
      </property>
+     <property name="maximum">
+      <number>10</number>
+     </property>
     </widget>
     <widget class="QLabel" name="label_2">
      <property name="geometry">
@@ -383,6 +398,28 @@ background-color: rgb(255, 255, 255);</string>
      </property>
      <property name="scaledContents">
       <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_5">
+     <property name="geometry">
+      <rect>
+       <x>680</x>
+       <y>420</y>
+       <width>191</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial Rounded MT Bold</family>
+       <pointsize>16</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 255);</string>
+     </property>
+     <property name="text">
+      <string>Add To Cart</string>
      </property>
     </widget>
    </widget>
@@ -459,6 +496,31 @@ li.checked::marker { content: &quot;\2612&quot;; }
        <pointsize>10</pointsize>
        <bold>true</bold>
       </font>
+     </property>
+     <property name="maximum">
+      <number>10</number>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_6">
+     <property name="geometry">
+      <rect>
+       <x>680</x>
+       <y>420</y>
+       <width>191</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial Rounded MT Bold</family>
+       <pointsize>16</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 255);</string>
+     </property>
+     <property name="text">
+      <string>Add To Cart</string>
      </property>
     </widget>
    </widget>

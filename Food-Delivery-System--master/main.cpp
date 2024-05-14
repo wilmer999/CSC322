@@ -4,7 +4,6 @@
 #include "stdio.h"
 #include "CustomerMain.h"
 #include "datastruct.h"
-#include <QtSql>
 #include <QSqlError>
 #include <QtDebug>
 
