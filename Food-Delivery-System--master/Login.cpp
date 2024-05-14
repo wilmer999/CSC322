@@ -1,5 +1,6 @@
 #include "Login.h"
 #include "UserCustomer.h"
+#include "database.h"
 #include "signup.h"
 #include "ui_widget.h"
 #include "vector"
@@ -61,13 +62,17 @@ void Widget::on_pushButton_clicked()
 {
     QString Username;
     QString Password;
+
     CustomerDataStore& dataStore = CustomerDataStore::getInstance();
+    DatabaseLink& dbLink = DatabaseLink::instance();
+
+    QSqlDatabase db = QSqlDatabase::addDatabase(dbLink.connectionName());
+    db.setDatabaseName(QString(dbLink.databaseName()));
 
     Username = ui->name->text();
     Password = ui->password->text();
 
-    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName(QString("C:\\Users\\ramse\\Desktop\\CSC322\\Food-Delivery-System--master\\demodb.db"));
+
 
     db.open();
     QSqlDatabase::database().transaction();
@@ -104,10 +109,16 @@ void Widget::on_pushButton_clicked()
 }
 
 
-void Widget::on_pushButton_2_clicked()
+void Widget::on_pushButton_2_clicked() ///////
 {
     QString na;
     QString nb;
+
+    CustomerDataStore& dataStore = CustomerDataStore::getInstance();
+    DatabaseLink& dbLink = DatabaseLink::instance();
+
+    QSqlDatabase db = QSqlDatabase::addDatabase(dbLink.connectionName());
+    db.setDatabaseName(QString(dbLink.databaseName()));
 
     int ks=0;
     int del=0;

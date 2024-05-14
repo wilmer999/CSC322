@@ -1,5 +1,6 @@
 #include "order.h"
 #include "UserCustomer.h"
+#include "database.h"
 #include "qsqlerror.h"
 #include "ui_order.h"
 #include "datastruct.h"
@@ -106,8 +107,11 @@ void order::on_pushButton_4_clicked()  // back
 void order::on_pushButton_3_clicked() //add to cart
 {
     CustomerDataStore& dataStore = CustomerDataStore::getInstance();
-    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName(QString("C:\\Users\\ramse\\Desktop\\CSC322\\Food-Delivery-System--master\\demodb.db"));
+    DatabaseLink& dbLink = DatabaseLink::instance();
+
+    QSqlDatabase db = QSqlDatabase::addDatabase(dbLink.connectionName());
+    db.setDatabaseName(QString(dbLink.databaseName()));
+
     QSqlQuery qry;
     Dialog pay;
 
@@ -239,6 +243,7 @@ void order::on_pushButton_3_clicked() //add to cart
         }
     }
 
+    db.close();
     this->close();
     pay.setModal(true);
     pay.exec();
@@ -249,8 +254,11 @@ void order::on_pushButton_3_clicked() //add to cart
 void order::on_pushButton_5_clicked()
 {
     CustomerDataStore& dataStore = CustomerDataStore::getInstance();
-    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName(QString("C:\\Users\\ramse\\Desktop\\CSC322\\Food-Delivery-System--master\\demodb.db"));
+    DatabaseLink& dbLink = DatabaseLink::instance();
+
+    QSqlDatabase db = QSqlDatabase::addDatabase(dbLink.connectionName());
+    db.setDatabaseName(QString(dbLink.databaseName()));
+
     QSqlQuery qry;
     Dialog pay;
 
@@ -381,7 +389,7 @@ void order::on_pushButton_5_clicked()
             qDebug() << "Failed to insert order:" << qry.lastError().text();
         }
     }
-
+    db.close();
     this->close();
     pay.setModal(true);
     pay.exec();
@@ -392,8 +400,11 @@ void order::on_pushButton_5_clicked()
 void order::on_pushButton_6_clicked()
 {
     CustomerDataStore& dataStore = CustomerDataStore::getInstance();
-    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName(QString("C:\\Users\\ramse\\Desktop\\CSC322\\Food-Delivery-System--master\\demodb.db"));
+    DatabaseLink& dbLink = DatabaseLink::instance();
+
+    QSqlDatabase db = QSqlDatabase::addDatabase(dbLink.connectionName());
+    db.setDatabaseName(QString(dbLink.databaseName()));
+
     QSqlQuery qry;
     Dialog pay;
 
@@ -525,6 +536,7 @@ void order::on_pushButton_6_clicked()
         }
     }
 
+    db.close();
     this->close();
     pay.setModal(true);
     pay.exec();

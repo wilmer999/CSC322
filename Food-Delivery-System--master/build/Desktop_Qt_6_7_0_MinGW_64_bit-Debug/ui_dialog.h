@@ -30,6 +30,7 @@ public:
     QPushButton *pushButton_2;
     QLabel *label;
     QLabel *label_4;
+    QPushButton *pushButton_3;
 
     void setupUi(QDialog *Dialog)
     {
@@ -93,6 +94,9 @@ public:
         label_4->setObjectName("label_4");
         label_4->setGeometry(QRect(-30, -10, 621, 671));
         label_4->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 204, 152);"));
+        pushButton_3 = new QPushButton(Dialog);
+        pushButton_3->setObjectName("pushButton_3");
+        pushButton_3->setGeometry(QRect(470, 370, 80, 24));
         label_4->raise();
         pushButton->raise();
         label_3->raise();
@@ -100,6 +104,7 @@ public:
         textBrowser->raise();
         pushButton_2->raise();
         label->raise();
+        pushButton_3->raise();
 
         retranslateUi(Dialog);
 
@@ -120,6 +125,7 @@ public:
         pushButton_2->setText(QCoreApplication::translate("Dialog", "Back", nullptr));
         label->setText(QCoreApplication::translate("Dialog", "  Total ", nullptr));
         label_4->setText(QString());
+        pushButton_3->setText(QCoreApplication::translate("Dialog", "Show Info", nullptr));
     } // retranslateUi
 
 };

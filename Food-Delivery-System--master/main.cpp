@@ -1,5 +1,6 @@
 #include "Login.h"
 #include <QApplication>
+#include "database.h"
 #include "vector"
 #include "stdio.h"
 #include "CustomerMain.h"
@@ -31,9 +32,18 @@ vector<orders>  orderlist;
 
 int main(int argc, char *argv[])
 {
-    consumerid=0;
 
     QApplication a(argc, argv);
+
+    DatabaseLink& dbLink = DatabaseLink::instance();
+    QString executablePath = QCoreApplication::applicationDirPath();
+
+    dbLink.setConnectionName("QSQLITE");
+    dbLink.setDatabaseName(QString (QString("C:\\Users\\ramse\\Desktop\\CSC322\\Food-Delivery-System--master\\build\\debug\\demodb.db")));
+
+    qDebug() << "Executable Path: " << dbLink.databaseName();
+
+
     Widget w;
     w.show();
    return a.exec();
