@@ -1,4 +1,6 @@
 #include "signup.h"
+#include "UserCustomer.h"
+#include "database.h"
 #include "ui_signup.h"
 
 #include <QtSql>
@@ -36,8 +38,11 @@ void SignUp::on_pushButton_clicked()
         return;
     }
 
-    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("C:\\Users\\ramse\\Desktop\\CSC322\\Food-Delivery-System--master\\demodb.db");
+    CustomerDataStore& dataStore = CustomerDataStore::getInstance();
+    DatabaseLink& dbLink = DatabaseLink::instance();
+
+    QSqlDatabase db = QSqlDatabase::addDatabase(dbLink.connectionName());
+    db.setDatabaseName(QString(dbLink.databaseName()));
 
     if (!db.open()) {
         qDebug() << "Error: Failed to open database";
