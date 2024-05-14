@@ -36,18 +36,15 @@ void EmployeeLogin::on_pushButton_clicked()
     query.exec();
 
     if(query.next()) {
-        QString storedPassword = query.value(1).toString(); // Assuming password is in the second column
+        QString storedPassword = query.value(1).toString(); 
         if(Password == storedPassword) {
-            // If credentials are valid, proceed to employee dashboard
-            // For example:
-            // EmployeeDashboard dashboard;
-            // dashboard.show();
+           
         } else {
-            // If password is incorrect, show error message
+            
             QMessageBox::critical(this, "Login Failed", "Incorrect password");
         }
     } else {
-        // If username not found, show error message
+      
         QMessageBox::critical(this, "Login Failed", "Username not found");
     }
 }
