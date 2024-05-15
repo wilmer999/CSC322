@@ -41,6 +41,9 @@ protected:
         // Accept the close event to allow the window to close
         event->accept();
     }
+private slots:
+    void deleteOrdersForCustomer();
+
 
 private:
     void deleteOrdersByCustomerID(int customerID) {
